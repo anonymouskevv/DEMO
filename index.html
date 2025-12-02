@@ -1,46 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Viral Meme Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #0e0e0e;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            text-align: center;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .footer-text {
-            margin-top: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ff3b3b;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IMPORNTANT LEGAL NOTICE</title>
+<style>
+  :root{
+    --bg:#060606;
+    --card:#0f1113;
+    --accent:#ff3b3b;
+    --accent-2:#ff7a7a;
+    --muted:#bfc5c9;
+    --glass: rgba(255,255,255,0.03);
+    --danger-glow: 0 8px 30px rgba(255,59,59,0.12);
+  }
+
+  /* Page reset */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(255,59,59,0.035), transparent 8%),
+      radial-gradient(900px 400px at 90% 90%, rgba(0,200,255,0.02), transparent 8%),
+      var(--bg);
+    color:#eee;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* container / card */
+  .card{
+    width:100%;
+    max-width:880px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;
+    padding:26px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7), var(--danger-glow);
+    border: 1px solid rgba(255,255,255,0.04);
+    position:relative;
+    overflow:hidden;
+    animation: slideUp .6s cubic-bezier(.2,.9,.2,1);
+  }
+
+  /* glowing border accent */
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background: linear-gradient(90deg, transparent, rgba(255,59,59,0.08), transparent);
+    filter: blur(12px);
+    pointer-events:none;
+    mix-blend-mode:screen;
+  }
+
+  /* government thin header */
+  .gov-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 12px;
+    border-radius:8px;
+    background: linear-gradient(90deg, rgba(255,59,59,0.07), rgba(255,122,122,0.03));
+    border: 1px solid rgba(255,59,59,0.08);
+    color:var(--accent-2);
+    font-weight:700;
+    letter-spacing:0.6px;
+    width:100%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  }
+
+  .gov-badge{
+    width:40px;
+    height:40px;
+    border-radius:8px;
+    background: linear-gradient(180deg, rgba(255,59,59,0.18), rgba(255,59,59,0.08));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    color:#fff;
+    box-shadow: 0 4px 18px rgba(255,59,59,0.08);
+    font-size:14px;
+  }
+
+  h1.title{
+    margin:14px 0 4px 0;
+    font-size:1.55rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    text-shadow: 0 6px 18px rgba(255,59,59,0.08);
+  }
+
+  .subtitle{
+    margin:0 0 18px 0;
+    font-size:0.95rem;
+    color:var(--muted);
+  }
+
+  /* content grid */
+  .content{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+    align-items:start;
+  }
+
+  /* left column - text block */
+  .left{
+    padding:12px 8px 8px 8px;
+  }
+
+  .message{
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    padding:18px;
+    border-radius:12px;
+    border: 1px solid rgba(255,255,255,0.03);
+    font-size:1.03rem;
+    line-height:1.55;
+    color:#fff;
+    font-weight:600;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+    animation: fadeIn .8s .15s both;
+  }
+
+  .message .heart{color:#ff6b6b; margin-left:6px}
+
+  /* legal box */
+  .legal{
+    margin-top:18px;
+    padding:16px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,59,59,0.03), rgba(255,59,59,0.02));
+    border-left:4px solid var(--accent);
+    color:#e6e6e6;
+    font-size:0.98rem;
+    line-height:1.6;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.5);
+    animation: slideInLeft .9s .2s both;
+  }
+
+  .legal strong{color: #fff}
+  .legal .list{margin:8px 0 0 14px}
+
+  /* right column - image frame */
+  .frame{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    padding:8px;
+    min-height:240px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation: popIn .7s .15s both;
+  }
+
+  /* image styling + blur overlay */
+  .frame img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:10px;
+    filter: grayscale(8%) saturate(1.02);
+    transition: filter .45s ease, transform .45s ease;
+    transform-origin:center;
+  }
+
+  .frame:hover img{
+    filter: none;
+    transform: scale(1.02);
+  }
+
+  /* red warning ribbon at image bottom */
+  .ribbon{
+    position:absolute;
+    left:12px; right:12px;
+    bottom:12px;
+    padding:10px 12px;
+    background: linear-gradient(90deg, rgba(255,59,59,0.95), rgba(255,122,122,0.9));
+    color:#fff;
+    border-radius:10px;
+    font-weight:800;
+    letter-spacing:0.6px;
+    text-align:center;
+    box-shadow: 0 10px 30px rgba(255,59,59,0.06);
+    transform: translateY(6px);
+    opacity:0;
+    animation: ribbonIn .6s .9s both;
+  }
+
+  /* bottom final line */
+  .bottom{
+    margin-top:20px;
+    padding:14px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border: 1px solid rgba(255,255,255,0.03);
+    text-align:center;
+    color:var(--accent);
+    font-weight:800;
+    letter-spacing:0.6px;
+    animation: fadeIn .7s 1.05s both;
+  }
+
+  /* small footnote */
+  .footnote{
+    margin-top:12px;
+    font-size:0.78rem;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  /* Animations */
+  @keyframes slideUp { from{ transform:translateY(14px); opacity:0 } to{ transform:none; opacity:1 } }
+  @keyframes fadeIn { from{opacity:0; transform: translateY(6px)} to{opacity:1; transform:none} }
+  @keyframes popIn { from{transform:scale(.985) translateY(8px); opacity:0} to{transform:none; opacity:1} }
+  @keyframes slideInLeft { from{opacity:0; transform:translateX(-10px)} to{opacity:1; transform:none} }
+  @keyframes ribbonIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:none} }
+
+  /* responsive */
+  @media (max-width:880px){
+    .content{ grid-template-columns: 1fr; }
+    .frame{ order:-1; margin-bottom:8px }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h2>Viral Meme Page</h2>
-        <img src="img.png" alt="Meme Image">
-        <p class="footer-text">Hey guys, this video is someone's private moment. Respect them and respect yourself — why search for it? Focus on the right things in life. ❤️</p>
+  <div class="card" role="region" aria-label="Important legal notice">
+    <div class="gov-bar" aria-hidden="true">
+      <div class="gov-badge">⚖️</div>
+      <div>OFFICIAL NOTICE</div>
+      <div style="margin-left:auto; font-size:0.82rem; color:var(--muted); font-weight:600">Site: Viral Meme Page</div>
     </div>
+
+    <h1 class="title">IMPORNTANT LEGAL NOTICE</h1>
+    <p class="subtitle">This page contains a strong advisory regarding unauthorized circulation of private media.</p>
+
+    <div class="content">
+      <div class="left">
+        <div class="message">
+          Hey guys, this video is someone's private moment. Respect them and respect yourself —
+          why search for it? Focus on the right things in life. <span class="heart">❤️</span>
+        </div>
+
+        <div class="legal" aria-live="polite">
+          <div style="font-weight:800; margin-bottom:8px; color:#fff">Legal Consequences of Sharing Someone’s Private MMS</div>
+
+          <div class="list">
+            • Circulating, forwarding, uploading, storing, or distributing someone’s private video without explicit consent is a criminal act under Indian law and may lead to prosecution.<br><br>
+
+            • Potential applicable provisions include:
+            <ul style="margin:8px 0 0 18px; color:var(--muted)">
+              <li><b>Information Technology Act (Sections 67 / 67A):</b> Transmission or publication of obscene material online.</li>
+              <li><b>Indian Penal Code Section 354C (Voyeurism):</b> Non-consensual recording/distribution — punishable with imprisonment up to 7 years.</li>
+              <li><b>IPC Section 509:</b> Words/gestures intended to insult modesty of a person.</li>
+              <li><b>Section 292 IPC:</b> Sale/distribution of obscene content.</li>
+            </ul>
+            <br>
+            • <b>Consequences:</b> Criminal investigation, arrest, prosecution, imprisonment (varies with offense, up to multiple years), monetary fines, court injunctions, seizure of devices, permanent criminal record, civil claims for damages, and digital blacklisting in certain state/government systems.<br><br>
+
+            • <b>Note:</b> “Forwarding” or “saving” a private video is treated as distribution—intent or “just curious” is not a legal defense.
+          </div>
+        </div>
+
+        <div class="bottom">
+          Any circulation of the video will lead to strict legal consequences under the IT Act and IPC.
+        </div>
+
+        <div class="footnote">
+          If you have received private media accidentally, delete it immediately and notify the person involved. For legal help, consult a qualified attorney — this notice is informational and not legal advice.
+        </div>
+      </div>
+
+      <div class="frame" aria-hidden="false">
+        <img src="img.png" alt="Meme preview — sensitive media advisory" />
+        <div class="ribbon">Do not share or distribute — unlawful distribution will be prosecuted</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
