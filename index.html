@@ -11,19 +11,16 @@
     --accent:#ff3b3b;
     --accent-2:#ff7a7a;
     --muted:#bfc5c9;
-    --glass: rgba(255,255,255,0.03);
     --neon-core: rgba(255,40,40,0.95);
     --neon-mid: rgba(255,60,60,0.75);
     --neon-soft: rgba(255,40,40,0.25);
   }
 
-  /* reset */
+  /* Reset & base */
   *{box-sizing:border-box}
-  html,body{height:100%}
+  html,body{height:100%;margin:0}
   body{
-    margin:0;
-    min-height:100vh;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     background:
       radial-gradient(1200px 600px at 10% 10%, rgba(255,59,59,0.02), transparent 8%),
       radial-gradient(900px 400px at 90% 90%, rgba(0,200,255,0.01), transparent 8%),
@@ -32,18 +29,18 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:32px;
+    padding:18px;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
   }
 
-  /* card */
+  /* Card container */
   .card{
     width:100%;
-    max-width:920px;
+    max-width:980px;
     background: linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.006));
-    border-radius:16px;
-    padding:22px;
+    border-radius:14px;
+    padding:20px;
     position:relative;
     overflow:hidden;
 
@@ -56,23 +53,22 @@
     animation: neonPulse 2.8s ease-in-out infinite;
   }
 
-  /* subtle inner glow line */
   .card::after{
     content:"";
     position:absolute;
     inset:6px;
-    border-radius:12px;
+    border-radius:10px;
     pointer-events:none;
     background: linear-gradient(180deg, rgba(255,255,255,0.002), transparent 40%);
     mix-blend-mode:overlay;
   }
 
-  /* gov bar */
+  /* header / gov bar */
   .gov-bar{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:8px 12px;
+    gap:10px;
+    padding:8px 10px;
     border-radius:8px;
     background: linear-gradient(90deg, rgba(255,59,59,0.06), rgba(255,122,122,0.02));
     border: 1px solid rgba(255,59,59,0.06);
@@ -81,8 +77,8 @@
     letter-spacing:0.5px;
   }
   .gov-badge{
-    width:40px;
-    height:40px;
+    width:38px;
+    height:38px;
     border-radius:8px;
     background: rgba(255,59,59,0.12);
     display:flex;
@@ -90,112 +86,111 @@
     justify-content:center;
     font-weight:900;
     color:#fff;
-    font-size:15px;
+    font-size:14px;
   }
 
   h1.title{
-    margin:14px 0 6px 0;
-    font-size:1.55rem;
+    margin:12px 0 6px 0;
+    font-size:1.45rem;
     color:var(--accent);
     text-transform:uppercase;
     letter-spacing:1px;
   }
   .subtitle{
-    margin:0 0 18px 0;
+    margin:0 0 14px 0;
     font-size:0.95rem;
     color:var(--muted);
   }
 
-  /* layout */
+  /* main layout (desktop) */
   .content{
     display:grid;
     grid-template-columns: 1fr 420px;
-    gap:22px;
+    gap:18px;
     align-items:start;
   }
 
+  /* left column */
   .message{
     background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-    padding:16px;
-    border-radius:12px;
+    padding:14px;
+    border-radius:10px;
     border: 1px solid rgba(255,255,255,0.03);
-    font-size:1.03rem;
-    line-height:1.55;
+    font-size:1.01rem;
+    line-height:1.5;
     color:#fff;
     font-weight:600;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
   }
 
   .legal{
-    margin-top:18px;
-    padding:16px;
-    border-radius:12px;
+    margin-top:14px;
+    padding:14px;
+    border-radius:10px;
     background: linear-gradient(180deg, rgba(255,59,59,0.03), rgba(255,59,59,0.02));
     border-left:4px solid var(--accent);
     color:#e6e6e6;
-    font-size:0.98rem;
-    line-height:1.6;
-    box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+    font-size:0.95rem;
+    line-height:1.55;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
   }
   .legal strong{color:#fff}
   .legal ul{margin:8px 0 0 18px; color:var(--muted)}
 
-  /* image frame */
+  /* right column image */
   .frame{
     position:relative;
-    border-radius:12px;
+    border-radius:10px;
     overflow:hidden;
     background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(255,255,255,0.01));
     border: 1px solid rgba(255,255,255,0.03);
-    padding:10px;
+    padding:8px;
     min-height:260px;
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.55);
   }
 
   .frame img{
     width:100%;
     height:auto;
     display:block;
-    border-radius:10px;
+    border-radius:8px;
     filter: grayscale(6%) saturate(0.96);
     transition: filter .35s ease, transform .35s ease;
   }
-  .frame:hover img{
-    filter:none;
-    transform:scale(1.02);
-  }
+  .frame:hover img{ filter:none; transform:scale(1.02); }
 
   .ribbon{
     position:absolute;
-    left:14px; right:14px;
-    bottom:14px;
-    padding:12px 14px;
+    left:12px; right:12px;
+    bottom:12px;
+    padding:10px 12px;
     background: linear-gradient(90deg, rgba(255,59,59,0.95), rgba(255,122,122,0.9));
     color:#fff;
-    border-radius:10px;
+    border-radius:8px;
     font-weight:800;
-    letter-spacing:0.4px;
+    letter-spacing:0.3px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(255,59,59,0.06);
+    box-shadow:0 8px 20px rgba(255,59,59,0.06);
+    font-size:0.95rem;
   }
 
   .bottom{
-    margin-top:18px;
-    padding:12px;
+    margin-top:14px;
+    padding:10px;
     border-radius:10px;
     background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
     border: 1px solid rgba(255,255,255,0.03);
     text-align:center;
     color:var(--accent);
     font-weight:800;
-    letter-spacing:0.5px;
+    letter-spacing:0.4px;
   }
 
   .footnote{
-    margin-top:12px;
+    margin-top:10px;
     font-size:0.82rem;
     color:var(--muted);
     text-align:center;
@@ -205,31 +200,58 @@
   @keyframes neonPulse {
     0% {
       box-shadow:
-        0 0 8px var(--neon-soft),
-        0 0 18px rgba(255,40,40,0.16),
-        0 10px 30px rgba(0,0,0,0.7);
+        0 0 6px var(--neon-soft),
+        0 0 14px rgba(255,40,40,0.14),
+        0 8px 28px rgba(0,0,0,0.7);
       border-color: rgba(255,40,40,0.85);
     }
     45% {
       box-shadow:
         0 0 14px var(--neon-mid),
-        0 0 26px rgba(255,60,60,0.35),
+        0 0 26px rgba(255,60,60,0.32),
         0 16px 40px rgba(0,0,0,0.7);
       border-color: rgba(255,60,60,1);
     }
     100% {
       box-shadow:
-        0 0 8px var(--neon-soft),
-        0 0 18px rgba(255,40,40,0.16),
-        0 10px 30px rgba(0,0,0,0.7);
+        0 0 6px var(--neon-soft),
+        0 0 14px rgba(255,40,40,0.14),
+        0 8px 28px rgba(0,0,0,0.7);
       border-color: rgba(255,40,40,0.85);
     }
   }
 
-  /* small screens */
+  /* --------------------------- */
+  /* Responsive tweaks for mobile */
+  /* --------------------------- */
   @media (max-width:920px){
-    .content{ grid-template-columns: 1fr; }
-    .frame{ order:-1; margin-bottom:10px; min-height:200px }
+    .card{ padding:16px; border-radius:12px; max-width:720px }
+    .content{ grid-template-columns: 1fr 360px; gap:14px }
+    .frame{ min-height:220px }
+  }
+
+  @media (max-width:720px){
+    body{ padding:12px }
+    .card{ padding:14px; max-width:100% }
+    .gov-bar{ padding:8px; gap:8px }
+    h1.title{ font-size:1.25rem; margin-top:10px }
+    .subtitle{ font-size:0.9rem; margin-bottom:12px }
+    .content{ grid-template-columns: 1fr; gap:12px }
+    .frame{ order:-1; min-height:200px; padding:6px }
+    .frame img{ border-radius:6px }
+    .message, .legal{ font-size:0.95rem; padding:12px; border-radius:8px }
+    .legal ul{ margin-left:16px }
+    .ribbon{ font-size:0.88rem; padding:8px 10px; left:8px; right:8px; bottom:10px }
+    .bottom{ font-size:0.95rem; padding:8px }
+    .footnote{ font-size:0.78rem }
+  }
+
+  @media (max-width:420px){
+    .card{ padding:12px }
+    .gov-badge{ width:34px; height:34px; font-size:13px }
+    .title{ font-size:1.1rem }
+    .frame{ min-height:180px }
+    .ribbon{ font-size:0.82rem; padding:7px 8px }
   }
 </style>
 </head>
@@ -246,8 +268,7 @@
     <div class="content">
       <div>
         <div class="message">
-          Hey guys, this video is someone's private moment. Respect them and respect yourself —
-          why search for it? Focus on the right things in life. ❤️
+          Hey guys, this video is someone's private moment. Respect them and respect yourself — why search for it? Focus on the right things in life. ❤️
         </div>
 
         <div class="legal" aria-live="polite">
@@ -287,3 +308,4 @@
   </div>
 </body>
 </html>
+```0
