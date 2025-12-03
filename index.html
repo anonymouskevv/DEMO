@@ -12,28 +12,32 @@
     --neon-core: rgba(255,40,40,0.95);
     --neon-mid: rgba(255,60,60,0.75);
     --neon-soft: rgba(255,40,40,0.25);
+    --card-max: 980px; /* page content max width */
+    --image-max-desktop: 600px; /* image max width on desktop */
   }
 
-  *{box-sizing:border-box}
-  html,body{margin:0; height:100%; overflow-x:hidden;}
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%;margin:0;overflow-x:hidden}
   body{
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     background: var(--bg);
     color:#eee;
-    padding:16px;
+    padding:18px;
     display:flex;
     align-items:flex-start;
     justify-content:center;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
+  /* card */
   .card{
     width:100%;
-    max-width:900px;
+    max-width:var(--card-max);
     background: rgba(255,255,255,0.02);
     border-radius:14px;
-    padding:16px;
+    padding:18px;
     position:relative;
-
     border:1.5px solid rgba(255,40,40,0.85);
     animation: neonPulse 3s ease-in-out infinite;
     box-shadow:
@@ -43,93 +47,86 @@
   }
 
   @keyframes neonPulse {
-    0% {
-      border-color: rgba(255,40,40,0.8);
-      box-shadow: 0 0 7px var(--neon-soft), 0 0 12px rgba(255,40,40,0.2);
-    }
-    50% {
-      border-color: rgba(255,70,70,1);
-      box-shadow: 0 0 16px var(--neon-mid), 0 0 28px rgba(255,60,60,0.35);
-    }
-    100% {
-      border-color: rgba(255,40,40,0.8);
-      box-shadow: 0 0 7px var(--neon-soft), 0 0 12px rgba(255,40,40,0.2);
-    }
+    0% { border-color: rgba(255,40,40,0.8); box-shadow: 0 0 7px var(--neon-soft), 0 0 12px rgba(255,40,40,0.2); }
+    50% { border-color: rgba(255,70,70,1); box-shadow: 0 0 16px var(--neon-mid), 0 0 28px rgba(255,60,60,0.35); }
+    100% { border-color: rgba(255,40,40,0.8); box-shadow: 0 0 7px var(--neon-soft), 0 0 12px rgba(255,40,40,0.2); }
   }
 
   .gov-bar{
     display:flex;
     align-items:center;
     gap:10px;
-    background: rgba(255,59,59,0.08);
+    background: rgba(255,59,59,0.06);
     padding:8px 12px;
     border-radius:8px;
-    border:1px solid rgba(255,59,59,0.15);
+    border:1px solid rgba(255,59,59,0.12);
     margin-bottom:12px;
+    color:var(--muted);
+    font-weight:700;
   }
   .gov-badge{
-    width:36px; height:36px;
-    background: rgba(255,59,59,0.2);
-    border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
+    width:36px;height:36px;border-radius:8px;
+    background: rgba(255,59,59,0.18); display:flex; align-items:center; justify-content:center;
     color:white; font-weight:900; font-size:14px;
   }
 
-  h1{
-    margin:10px 0 6px 0;
-    font-size:1.45rem;
-    color:var(--accent);
-    text-transform:uppercase;
-  }
+  h1{ margin:10px 0 6px 0; font-size:1.45rem; color:var(--accent); text-transform:uppercase; }
+  .subtitle{ margin:0 0 14px 0; color:var(--muted); font-size:0.95rem }
 
-  .subtitle{
-    margin-bottom:14px;
-    color:var(--muted);
-    font-size:0.95rem;
-  }
-
-  /* IMAGE AT TOP */
+  /* image top container */
   .frame{
     width:100%;
+    display:flex;
+    justify-content:center;
+    margin-bottom:16px;
+    padding:10px;
     border-radius:12px;
-    overflow:hidden;
+    background: rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.04);
+  }
+
+  /* responsive image sizing */
+  .frame .img-wrap{
+    width:100%;
+    max-width:var(--image-max-desktop);
+    border-radius:10px;
     position:relative;
-    background: rgba(255,255,255,0.05);
-    margin-bottom:18px;
-    padding:8px;
-    border:1px solid rgba(255,255,255,0.08);
+    overflow:hidden;
+    background:rgba(0,0,0,0.04);
   }
 
   .frame img{
+    display:block;
     width:100%;
     height:auto;
-    border-radius:10px;
-    display:block;
-    max-height:70vh;
     object-fit:cover;
+    border-radius:10px;
+    max-height:70vh;
   }
 
   .ribbon{
     position:absolute;
-    bottom:1rem; left:1rem; right:1rem;
-    background:linear-gradient(90deg, rgba(255,59,59,1), rgba(255,122,122,0.85));
-    text-align:center;
-    padding:10px;
-    border-radius:10px;
-    font-weight:800;
+    left:8px; right:8px; bottom:8px;
+    padding:10px 12px;
+    background:linear-gradient(90deg, rgba(255,59,59,1), rgba(255,122,122,0.9));
     color:#fff;
-    font-size:0.9rem;
-    box-shadow:0 8px 20px rgba(255,59,59,0.25);
+    font-weight:800;
+    text-align:center;
+    border-radius:8px;
+    box-shadow:0 8px 24px rgba(255,59,59,0.08);
+    font-size:0.95rem;
   }
 
+  /* message & legal */
   .message{
     background: rgba(255,255,255,0.03);
     padding:14px;
     border-radius:10px;
-    margin-bottom:14px;
-    border:1px solid rgba(255,255,255,0.05);
+    margin-bottom:12px;
+    border:1px solid rgba(255,255,255,0.04);
     line-height:1.5;
-    font-size:0.98rem;
+    font-size:1rem;
+    font-weight:600;
   }
 
   .legal{
@@ -137,10 +134,10 @@
     border-left:4px solid var(--accent);
     border-radius:10px;
     padding:14px;
-    margin-bottom:14px;
+    margin-bottom:12px;
     line-height:1.55;
-    font-size:0.95rem;
-    border:1px solid rgba(255,59,59,0.15);
+    font-size:0.96rem;
+    border:1px solid rgba(255,59,59,0.12);
   }
   .legal ul{ margin-left:18px; color:var(--muted); }
 
@@ -148,77 +145,90 @@
     padding:12px;
     border-radius:10px;
     background: rgba(255,255,255,0.03);
-    font-weight:800;
-    color:var(--accent);
     text-align:center;
+    color:var(--accent);
+    font-weight:800;
     margin-bottom:12px;
   }
 
-  .footnote{
-    font-size:0.85rem;
-    color:var(--muted);
-    text-align:center;
-    line-height:1.4;
+  .footnote{ font-size:0.86rem; color:var(--muted); text-align:center; }
+
+  /* responsive tweaks */
+  @media (max-width:920px){
+    :root{ --card-max:760px; --image-max-desktop:520px; }
+    .card{ padding:16px }
   }
 
-  @media(max-width:500px){
-    h1{font-size:1.25rem;}
-    .ribbon{font-size:0.8rem; padding:8px;}
-    .message,.legal{font-size:0.92rem;}
+  @media (max-width:700px){
+    :root{ --card-max:640px; --image-max-desktop:100%; } /* image becomes full width on small screens */
+    .card{ padding:14px; border-radius:12px; }
+    .gov-bar{ padding:8px; gap:8px; }
+    h1{ font-size:1.25rem; }
+    .ribbon{ left:10px; right:10px; bottom:10px; font-size:0.9rem; padding:9px; }
+  }
+
+  @media (max-width:420px){
+    body{ padding:10px }
+    .card{ padding:12px }
+    h1{ font-size:1.12rem }
+    .message, .legal{ font-size:0.94rem; padding:12px }
+    .ribbon{ left:8px; right:8px; bottom:8px; font-size:0.86rem; padding:8px }
+  }
+
+  /* accessibility */
+  @media (prefers-reduced-motion: reduce){
+    .card{ animation:none }
   }
 </style>
 </head>
 <body>
+  <div class="card" role="region" aria-label="Important legal notice">
 
-<div class="card">
+    <div class="gov-bar" aria-hidden="true">
+      <div class="gov-badge">⚖️</div>
+      OFFICIAL NOTICE
+    </div>
 
-  <div class="gov-bar">
-    <div class="gov-badge">⚖️</div>
-    OFFICIAL NOTICE
+    <h1>IMPORTANT LEGAL NOTICE</h1>
+    <p class="subtitle">This page contains a strong advisory regarding unauthorized circulation of private media.</p>
+
+    <!-- IMAGE TOP: centered, capped width -->
+    <div class="frame" aria-hidden="false">
+      <div class="img-wrap" aria-hidden="false">
+        <img src="img.png" alt="Sensitive media advisory preview">
+        <div class="ribbon" role="note">Do not share or distribute — unlawful distribution will be prosecuted</div>
+      </div>
+    </div>
+
+    <div class="message">
+      Hey guys, this video is someone's private moment. Respect them and respect yourself — why search for it? Focus on the right things in life. ❤️
+    </div>
+
+    <div class="legal" aria-live="polite">
+      <strong>Legal Consequences of Sharing Someone’s Private MMS</strong>
+      <br><br>
+      Circulating, forwarding, uploading, storing, or distributing private video without consent is a criminal offense under Indian law and may lead to prosecution.
+      <br><br>
+      <strong>Potential applicable provisions and outcomes</strong>
+      <ul>
+        <li><strong>Information Technology Act (Sections 67 / 67A):</strong> Transmission/publication of obscene material online — penal consequences and fines.</li>
+        <li><strong>Indian Penal Code Section 354C (Voyeurism):</strong> Non-consensual recording/distribution — punishable with imprisonment (may be up to 7 years depending on facts).</li>
+        <li><strong>IPC Section 509:</strong> Insulting the modesty of a person.</li>
+        <li><strong>Section 292 IPC:</strong> Distribution of obscene material.</li>
+      </ul>
+      <br>
+      <strong>Consequences:</strong> Criminal investigation, arrest, prosecution, imprisonment (varies with the offense), monetary fines, seizure of devices, civil claims for damages, court injunctions (orders to remove content), and a permanent criminal record. Forwarding or saving private content is treated as distribution; “curiosity” is not a legal defense.
+      <br><br>
+      <strong>Note:</strong> Even if you did not record the media, possession and distribution without consent can result in criminal and civil liability. If you encounter such content, do not download, forward, repost, or store it.
+    </div>
+
+    <div class="bottom">
+      Any circulation of the video will lead to strict legal consequences under the IT Act and IPC.
+    </div>
+
+    <div class="footnote">
+      If you received private media accidentally, delete it immediately and notify the concerned person. This page is informational and not legal advice.
+    </div>
   </div>
-
-  <h1>IMPORTANT LEGAL NOTICE</h1>
-  <p class="subtitle">This page contains a strong advisory regarding unauthorized circulation of private media.</p>
-
-  <!-- TOP IMAGE -->
-  <div class="frame">
-    <img src="img.png" alt="">
-    <div class="ribbon">Do not share or distribute — unlawful distribution will be prosecuted</div>
-  </div>
-
-  <!-- MESSAGE -->
-  <div class="message">
-    Hey guys, this video is someone's private moment. Respect them and respect yourself — why search for it?  
-    Focus on the right things in life. ❤️
-  </div>
-
-  <!-- LEGAL BOX -->
-  <div class="legal">
-    <strong>Legal Consequences of Sharing Someone’s Private MMS</strong>
-    <br><br>
-    Circulating, forwarding, uploading, storing, or distributing private video without consent is a criminal offense.
-    <br><br>
-    <strong>Applicable Indian Law:</strong>
-    <ul>
-      <li><strong>IT Act Sections 67 & 67A:</strong> Obscene / sexually explicit content online.</li>
-      <li><strong>IPC 354C:</strong> Voyeurism — up to 7 years imprisonment.</li>
-      <li><strong>IPC 509:</strong> Insulting modesty.</li>
-      <li><strong>IPC 292:</strong> Obscene content distribution.</li>
-    </ul>
-    <br>
-    Consequences include criminal charges, arrest, imprisonment, fines, civil lawsuits, device seizure, and a permanent record.
-  </div>
-
-  <div class="bottom">
-    Any circulation of the video will lead to strict legal consequences under the IT Act and IPC.
-  </div>
-
-  <div class="footnote">
-    If you received private media accidentally, delete it immediately and inform the concerned person.  
-    This page is informational and not legal advice.
-  </div>
-
-</div>
-
 </body>
 </html>
